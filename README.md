@@ -2,6 +2,24 @@
 
 This is the GitHub repository for "The NLM indexer assignment dataset" by Alastair R. Rae, James G. Mork, and Dina Demner-Fushman.
 
+## Download
+The following downloads are provided as GitHub release assets.
+
+### Indexer assignment dataset files
+Note: this GitHub repository releases indexer assignment datasets for in-house and contractor indexers. However, our paper focuses on the larger contractor indexer dataset. 
+
+| File | Size | Format | Description
+| --- | --- | --- | --- |
+| Contractor_Indexer_Assignments.txt | 50Mb | PSV (pmid&#124;indexer_num) | pmid-indexer number mapping file for contractor indexers.
+| In_House_Indexer_Assignments.txt | 4Mb | PSV (pmid&#124;indexer_num) | pmid-indexer number mapping file for in-house indexers.
+| Contractor_Dataset.json.xz | 1.4Gb | JSON (XZ archive) | Contractor indexer assignment dataset (with article metadata).
+| Contractor_Train_Set.json.gz | 1.6Gb | JSON (Gzip archive) | Contractor indexer train set (with article metadata).
+| Contractor_Val_Set.json.gz | 131Mb | JSON (Gzip archive) | Contractor indexer validation set (with article metadata).
+| Contractor_Test_Set.json.gz | 366Mb | JSON (Gzip archive) | Contractor indexer test set (with article metadata).
+| Contractor_Val_Set_Issue_Id_Lookup.csv | 13Mb | CSV with headers | Contractor indexer val set pmid-issue id mapping file.
+| Contractor_Test_Set_Issue_Id_Lookup.csv | 35Mb | CSV with headers | Contractor indexer test set pmid-issue id mapping file.
+
+
 ## Setup
 
 ### Create the Anaconda Virtual Environment:
