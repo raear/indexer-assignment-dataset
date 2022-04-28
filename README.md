@@ -30,6 +30,17 @@ Note: this GitHub repository releases indexer assignment datasets for in-house a
 | F1000res_test_set.json | 404Kb | JSON | F1000research test set.
 | F1000res_exclude_list.json | 28Kb | JSON | For each article (identified by query_id) a list of reviewer to exclude (since they are article authors).
 
+### Trained Models
+
+| File | Size | Format | Description
+| --- | --- | --- | --- |
+| indexer_profiles_method_1.tar.gz | 1.1Gb | tar.gz | Indexer profiles model artifacts for model trained using method 1.
+| indexer_profiles_method_2.tar.gz | 1.1Gb | tar.gz | Indexer profiles model artifacts for model trained using method 2.
+| indexer_profiles_method_3.tar.gz | 1.1Gb | tar.gz | Indexer profiles model artifacts for model trained using method 3.
+| pretrained_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expertise matching model pretrained on the indexer assignment dataset.
+| fine_tuned_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expertise matching model fine-tuned on the journal reviewer assignment dataset.
+| fine_tuned_pretrained_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expertise matching model pretrained on the indexer assignment dataset and then fine-tuned on the journal reviewer assignment dataset.
+
 ## Setup
 
 ### Create the Anaconda Virtual Environment:
