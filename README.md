@@ -5,20 +5,30 @@ This is the GitHub repository for "The NLM indexer assignment dataset" by Alasta
 ## Download
 The following downloads are provided as GitHub release assets.
 
-### Indexer assignment dataset files
+### Indexer Assignment Dataset Files
 Note: this GitHub repository releases indexer assignment datasets for in-house and contractor indexers. However, our paper focuses on the larger contractor indexer dataset. 
 
 | File | Size | Format | Description
 | --- | --- | --- | --- |
-| Contractor_Indexer_Assignments.txt | 50Mb | PSV (pmid&#124;indexer_num) | pmid-indexer number mapping file for contractor indexers.
-| In_House_Indexer_Assignments.txt | 4Mb | PSV (pmid&#124;indexer_num) | pmid-indexer number mapping file for in-house indexers.
-| Contractor_Dataset.json.xz | 1.4Gb | JSON (XZ archive) | Contractor indexer assignment dataset (with article metadata).
-| Contractor_Train_Set.json.gz | 1.6Gb | JSON (Gzip archive) | Contractor indexer train set (with article metadata).
-| Contractor_Val_Set.json.gz | 131Mb | JSON (Gzip archive) | Contractor indexer validation set (with article metadata).
-| Contractor_Test_Set.json.gz | 366Mb | JSON (Gzip archive) | Contractor indexer test set (with article metadata).
-| Contractor_Val_Set_Issue_Id_Lookup.csv | 13Mb | CSV with headers | Contractor indexer val set pmid-issue id mapping file.
-| Contractor_Test_Set_Issue_Id_Lookup.csv | 35Mb | CSV with headers | Contractor indexer test set pmid-issue id mapping file.
+| Contractor_Indexer_Assignments.txt | 50Mb | PSV (pmid&#124;indexer_num) | Contractor indexer article assignments.
+| In_House_Indexer_Assignments.txt | 4Mb | PSV (pmid&#124;indexer_num) | In house indexer article assignments (not discussed in paper).
+| Contractor_Indexer_Dataset.json.xz | 1.4Gb | JSON (XZ archive) | Contractor indexer assignment dataset (with article metadata).
+| Contractor_Indexer_Train_Set.json.gz | 1.6Gb | JSON (Gzip archive) | Contractor indexer train set.
+| Contractor_Indexer_Val_Set.json.gz | 131Mb | JSON (Gzip archive) | Contractor indexer validation set.
+| Contractor_Indexer_Test_Set.json.gz | 366Mb | JSON (Gzip archive) | Contractor indexer test set.
+| Contractor_Indexer_Val_Set_Issue_Id_Lookup.csv | 13Mb | CSV with headers | Contractor indexer validation set article-issue id mapping file.
+| Contractor_Indexer_Test_Set_Issue_Id_Lookup.csv | 35Mb | CSV with headers | Contractor indexer test set article-issue id mapping file.
 
+### F1000research Journal Reviewer Assignment Dataset Files
+
+| File | Size | Format | Description
+| --- | --- | --- | --- |
+| F1000res_assignments.json | 2.5Mb | JSON | Reviewer assignments for the F1000research journal (article metadata and reviewer ids).
+| F1000res_reviewers.json | 145Mb | JSON | F1000research reviewer information (including publication list).
+| F1000res_train_set.json | 1.9Mb | JSON | F1000research train set.
+| F1000res_val_set.json | 253Kb | JSON | F1000research validation set.
+| F1000res_test_set.json | 404Kb | JSON | F1000research test set.
+| F1000res_exclude_list.json | 28Kb | JSON | For each article (identified by query_id) a list of reviewer to exclude (since they are article authors).
 
 ## Setup
 
