@@ -28,10 +28,10 @@ Note 2: the original issue-based article groupings used by the IMS system are no
 | --- | --- | --- | --- |
 | F1000res_assignments.json | 2.5Mb | JSON | Reviewer assignments for the F1000research journal (article metadata and reviewer ids).
 | F1000res_reviewers.json | 145Mb | JSON | F1000research reviewer information (including publication list).
-| F1000res_train_set.json | 1.9Mb | JSON | F1000research train set.
-| F1000res_val_set.json | 253Kb | JSON | F1000research validation set.
-| F1000res_test_set.json | 404Kb | JSON | F1000research test set.
-| F1000res_authors.json | 2.4Mb | JSON | F1000research article author information.
+| F1000res_train_set.json | 1.9Mb | JSON | Train set.
+| F1000res_val_set.json | 253Kb | JSON | Validation set.
+| F1000res_test_set.json | 404Kb | JSON | Test set.
+| F1000res_authors.json | 2.4Mb | JSON | Article author information.
 
 ### Trained Models
 
@@ -65,7 +65,7 @@ pip install pytrec_eval==0.5
 ### Create the Indexer Assignment Dataset
 
 1. Create a working directory.
-2. Copy the lsi2022.xml and Contractor_Indexer_Assignments.txt into the working directory.
+2. Copy lsi2022.xml and Contractor_Indexer_Assignments.txt into the working directory.
 3. Set _working_dir in indexer_assignment_dataset.indexer_assignment.dataset.config.py
 4. To create the dataset and associated files, run:
 ```
