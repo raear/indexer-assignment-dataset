@@ -6,18 +6,21 @@ This is the GitHub repository for "The NLM indexer assignment dataset" by Alasta
 The following downloads are provided as GitHub release assets.
 
 ### Indexer Assignment Dataset Files
-Note: this GitHub repository releases indexer assignment datasets for in-house and contractor indexers. However, our paper focuses on the larger contractor indexer dataset. 
+Note 1: this GitHub repository releases indexer assignment datasets for in-house (federal employees) and contractor indexers. However, our paper focuses on the larger contractor indexer dataset.
+
+Note 2: the original issue-based article groupings used by the IMS system are no longer available, however we have reconstructed the assigned IMS issues (as closely as possible) using available metadata and our knowledge of the indexing process. The reconstructed IMS issues are provided as mapping files (containing mappings between article PMIDs and generated issue ids).
 
 | File | Size | Format | Description
 | --- | --- | --- | --- |
+| lsi2022.xml | 42Mb | XML | Copy of NLM "List of Serials Indexed for Online Users" file.
 | Contractor_Indexer_Assignments.txt | 50Mb | PSV (pmid&#124;indexer_num) | Contractor indexer article assignments.
 | In_House_Indexer_Assignments.txt | 4Mb | PSV (pmid&#124;indexer_num) | In house indexer article assignments (not discussed in paper).
 | Contractor_Indexer_Dataset.json.xz | 1.4Gb | JSON (XZ archive) | Contractor indexer assignment dataset (with article metadata).
 | Contractor_Indexer_Train_Set.json.gz | 1.6Gb | JSON (Gzip archive) | Contractor indexer train set.
 | Contractor_Indexer_Val_Set.json.gz | 131Mb | JSON (Gzip archive) | Contractor indexer validation set.
 | Contractor_Indexer_Test_Set.json.gz | 366Mb | JSON (Gzip archive) | Contractor indexer test set.
-| Contractor_Indexer_Val_Set_Issue_Id_Lookup.csv | 13Mb | CSV with headers | Contractor indexer validation set article-issue id mapping file.
-| Contractor_Indexer_Test_Set_Issue_Id_Lookup.csv | 35Mb | CSV with headers | Contractor indexer test set article-issue id mapping file.
+| Contractor_Indexer_Val_Set_Issue_Ids.csv | 13Mb | CSV with headers | Contractor indexer validation set article id-issue id mapping file.
+| Contractor_Indexer_Test_Set_Issue_Ids.csv | 35Mb | CSV with headers | Contractor indexer test set article id-issue id mapping file.
 
 ### F1000research Journal Reviewer Assignment Dataset Files
 
@@ -28,7 +31,7 @@ Note: this GitHub repository releases indexer assignment datasets for in-house a
 | F1000res_train_set.json | 1.9Mb | JSON | F1000research train set.
 | F1000res_val_set.json | 253Kb | JSON | F1000research validation set.
 | F1000res_test_set.json | 404Kb | JSON | F1000research test set.
-| F1000res_exclude_list.json | 28Kb | JSON | For each article (identified by query_id) a list of reviewer to exclude (since they are article authors).
+| F1000res_authors.json | 2.4Mb | JSON | F1000research article author information.
 
 ### Trained Models
 
@@ -37,9 +40,9 @@ Note: this GitHub repository releases indexer assignment datasets for in-house a
 | indexer_profiles_method_1.tar.gz | 1.1Gb | tar.gz | Indexer profiles model artifacts for model trained using method 1.
 | indexer_profiles_method_2.tar.gz | 1.1Gb | tar.gz | Indexer profiles model artifacts for model trained using method 2.
 | indexer_profiles_method_3.tar.gz | 1.1Gb | tar.gz | Indexer profiles model artifacts for model trained using method 3.
-| pretrained_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expertise matching model pretrained on the indexer assignment dataset.
-| fine_tuned_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expertise matching model fine-tuned on the journal reviewer assignment dataset.
-| fine_tuned_pretrained_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expertise matching model pretrained on the indexer assignment dataset and then fine-tuned on the journal reviewer assignment dataset.
+| pretrained_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expert matching model pretrained on the indexer assignment dataset.
+| fine_tuned_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expert matching model fine-tuned on the journal reviewer assignment dataset.
+| fine_tuned_pretrained_text_matching_model.tar.gz| 1.1Gb | tar.gz | Artifacts for reviewer expert matching model pretrained on the indexer assignment dataset and then fine-tuned on the journal reviewer assignment dataset.
 
 ## Setup
 
@@ -87,16 +90,17 @@ pip install pytrec_eval==0.5
 python -m indexer_assignment_dataset.indexer_assignment.indexer_profiles.train
 ```
 
-### Indexer Profiles Model Expertise Predictions
+### Indexer Profiles Model Expertise Prediction
 
 1. Set the dataset directory (_dataset_dir), the output directory (root_dir), and the Hugging Face cache directory (cache_dir) in indexer_assignment_dataset.indexer_assignment.indexer_profiles.config.py
-2. Additionally, set the folder containing the model training artefacts (run_dir), and the model checkpoint to load (best_model_dir) to the model checkpoint for epoch 5 (e.g., "checkpoint-127345").
+2. Additionally, set the folder containing the model training artifacts (run_dir), and the model checkpoint to load (best_model_dir) to the model checkpoint for epoch 5 (e.g., "checkpoint-127345").
 3. To make expertise predictions run:
 ```
 python -m indexer_assignment_dataset.indexer_assignment.indexer_profiles.pred
 ```
 
 ### Run Assignment Algorithm
+Note: the assignment algorithm was only run for fully manually indexed journals. MTIFL and MTIR journals were semi-automatically indexed (indexing_method="curated") and these journals had separate indexing quotas and backlogs.
 
 1. Set the dataset directory (_dataset_dir), the profile matching working directory (_profile_matching_dir), the indexer profiles models output directory (_run_dir), and the assignment working directory (_working_dir) in indexer_assignment_dataset.indexer_assignment.assignment.config.py
 2. Additionally, configure the correct paths for the indexer profiles model predictions: indexer_profiles_1_predictions_path_template, indexer_profiles_2_predictions_path_template, indexer_profiles_3_predictions_path_template.
@@ -121,7 +125,7 @@ python -m indexer_assignment_dataset.reviewer_assignment.dataset.run_all
 
 ### Reviewer Profile Matching
 1. Set the working directory (_working_dir) and the Journal Reviewer Assignment Dataset directory (_dataset_dir) in indexer_assignment_dataset.reviewer_assignment.profile_matching.config.py
-2. Additionally, set the Hugging Face cache direcotry (cache_dir), and specify the location of the TF-IDF model (tfidf_model_path) that was created for indexer profile matching.
+2. Additionally, set the Hugging Face cache directory (cache_dir), and specify the location of the TF-IDF model (tfidf_model_path) that was created for indexer profile matching.
 3. Create reviewer recommendations for the test set by running the following:
 ```
    python -m indexer_assignment_dataset.reviewer_assignment.profile_matching.run_all
@@ -145,7 +149,7 @@ python -m indexer_assignment_dataset.reviewer_assignment.transfer_learning.revie
 
 ### Text Matching Model Reviewer Expertise Predictions
 1. Set the reviewer assignment dataset directory (_reviewer_dataset_dir), the Hugging Face cache directory (cache_dir), and the output directory (root_dir) in indexer_assignment_dataset.reviewer_assignment.transfer_learning.config.py
-2. Additionally, set run_dir to the folder containing the fine-tuned model artefacts, and set best_model_dir to directory of the model checkpoint with the highest validation set F1 score (e.g. checkpoint-84).
+2. Additionally, set run_dir to the folder containing the fine-tuned model artifacts, and set best_model_dir to directory of the model checkpoint with the highest validation set F1 score (e.g. checkpoint-84).
 3. Make reviewer expertise predictions as follows:
 ```
 python -m indexer_assignment_dataset.reviewer_assignment.transfer_learning.reviewer_assignment_pred
