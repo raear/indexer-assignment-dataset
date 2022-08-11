@@ -22,12 +22,12 @@ Note 2: the original issue-based article groupings used by the IMS system are no
 | Contractor_Indexer_Val_Set_Issue_Ids.csv | 13Mb | CSV with headers | Contractor indexer validation set article id-issue id mapping file.
 | Contractor_Indexer_Test_Set_Issue_Ids.csv | 35Mb | CSV with headers | Contractor indexer test set article id-issue id mapping file.
 
-### F1000research Journal Reviewer Assignment Dataset Files
+### F1000 Research Journal Reviewer Assignment Dataset Files
 
 | File | Size | Format | Description
 | --- | --- | --- | --- |
-| F1000res_assignments.json | 2.5Mb | JSON | Reviewer assignments for the F1000research journal (article metadata and reviewer ids).
-| F1000res_reviewers.json | 145Mb | JSON | F1000research reviewer information (including publication list).
+| F1000res_assignments.json | 2.5Mb | JSON | Reviewer assignments for the F1000 Research journal (article metadata and reviewer ids).
+| F1000res_reviewers.json | 145Mb | JSON | F1000 Research reviewer information (including publication list).
 | F1000res_train_set.json | 1.9Mb | JSON | Train set.
 | F1000res_val_set.json | 253Kb | JSON | Validation set.
 | F1000res_test_set.json | 404Kb | JSON | Test set.

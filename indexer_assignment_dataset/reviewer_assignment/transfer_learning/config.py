@@ -72,7 +72,7 @@ CONFIG = {
         "max_grad_norm": 1.,
         "max_steps" : -1,
         "monitor_metric": "loss",
-        "num_epochs": 30,
+        "num_epochs": 50,
         "run_dir": None,
         "save_steps": -1,
         "save_strategy": "epoch",
@@ -149,7 +149,6 @@ def process_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--best_model_dir", type=str)
-    parser.add_argument("--cv_fold", type=int)
     parser.add_argument("--model_name", type=str)
     parser.add_argument("--results_filename", type=str)
     parser.add_argument("--run_dir", type=str)
@@ -160,7 +159,6 @@ def process_args():
     cfg = CONFIG
 
     if args.best_model_dir: cfg["train"]["best_model_dir"] = args.best_model_dir
-    if args.cv_fold: cfg["reviewer_assignment_dataset"]["cv_fold"] = args.cv_fold
     if args.model_name: cfg["model"]["name"] = args.model_name
     if args.results_filename: cfg["pred"]["results_filename"] = args.results_filename 
     if args.run_dir:

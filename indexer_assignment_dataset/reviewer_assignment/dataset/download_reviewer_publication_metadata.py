@@ -110,7 +110,7 @@ def query_metadata(pmid):
             retry_count += 1
 
     if not xml:
-        print(f"PubOne empty response after {MAX_RETRYS} retrys.")
+        print(f"PubOne empty response after {cfg['max_retrys']} retrys.")
         return metadata
 
     try:

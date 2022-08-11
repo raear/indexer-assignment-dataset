@@ -145,7 +145,7 @@ class Dataset(torch.utils.data.Dataset):
         return bucket_idx
 
     def _get_history_text(self, indexer_num, bucket_idx, dataset_idx):
-        history = self._buckets[bucket_idx][indexer_num]
+        history = set(self._buckets[bucket_idx][indexer_num])
         history.discard(dataset_idx)
         sampled_history = self._sample_history(history)
         history_text  = "|".join([self._get_text(self._dataset[idx]) for idx in sampled_history if idx != dataset_idx])
